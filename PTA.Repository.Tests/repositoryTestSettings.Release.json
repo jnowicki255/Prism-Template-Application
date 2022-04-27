@@ -1,0 +1,7 @@
+﻿{
+  "SqlDb": {
+    "@jdt.replace": {
+      "ConnectionString": "Server=.\\SQLEXPRESS; Database=RMADB_TEST; Trusted_Connection=True; MultipleActiveResultSets=true"
+    }
+  }
+}

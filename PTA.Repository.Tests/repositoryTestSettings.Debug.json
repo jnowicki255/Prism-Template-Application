@@ -1,0 +1,7 @@
+﻿{
+  "SqlDb": {
+    "@jdt.replace": {
+      "ConnectionString": "Server=(localdb)\\MSSQLLocalDB;Integrated Security=true;Database=RMADB_TEST;"
+    }
+  }
+}

@@ -1,0 +1,5 @@
+{
+  "SqlDb": {
+    "ConnectionString": "Server=.\\SQLEXPRESS; Database=PTADB; Trusted_Connection=True; MultipleActiveResultSets=true"
+  }
+}
