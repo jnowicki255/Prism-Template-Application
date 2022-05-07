@@ -3,6 +3,9 @@
     /// <summary>
     /// Combines all interfaces related to the database repository.
     /// </summary>
-    public interface IRepository : IAuthRepository, IUserRepository
+    public interface IRepository : 
+        IAuthRepository, 
+        IUserRepository, 
+        IVehiclesRepository
     { }
 }

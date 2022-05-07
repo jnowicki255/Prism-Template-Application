@@ -4,7 +4,7 @@ using System;
 
 namespace PTA.Repository.Seeds
 {
-    public static partial class RmaSeed
+    public static partial class PtaSeed
     {
         public static void UsersSeed(this ModelBuilder modelBuilder)
         {

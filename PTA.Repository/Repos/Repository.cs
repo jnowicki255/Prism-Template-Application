@@ -1,6 +1,10 @@
 ﻿using AutoMapper;
+using PTA.Contracts.Entities.Common.Vehicles;
+using PTA.Contracts.Entities.Result;
 using PTA.Repository.Interfaces.Repos;
 using PTA.Repository.Interfaces.Settings;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace PTA.Repository.Repos
 {

@@ -34,6 +34,9 @@ namespace PTA.Repository
         { }
 
         public virtual DbSet<DbUser> Users { get; set; }
+        public virtual DbSet<DbVehicle> Vehicles { get; set; }
+        public virtual DbSet<DbVehicleType> VehicleTypes { get; set; }
+        public virtual DbSet<DbFuelType> FuelTypes { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -75,6 +78,8 @@ namespace PTA.Repository
         private void SeedProductionDatabase(ModelBuilder modelBuilder)
         {
             modelBuilder.UsersSeed();
+            modelBuilder.FuelTypeSeed();
+            modelBuilder.VehicleTypeSeed();
         }
     }
 }

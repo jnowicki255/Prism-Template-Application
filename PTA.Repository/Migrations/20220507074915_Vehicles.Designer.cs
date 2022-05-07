@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PTA.Repository;
 
@@ -11,9 +12,10 @@ using PTA.Repository;
 namespace PTA.Repository.Migrations
 {
     [DbContext(typeof(PTADbContext))]
-    partial class PTADbContextModelSnapshot : ModelSnapshot
+    [Migration("20220507074915_Vehicles")]
+    partial class Vehicles
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
