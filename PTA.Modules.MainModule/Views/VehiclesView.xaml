@@ -3,11 +3,48 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:ui="http://schemas.modernwpf.com/2019"
+             xmlns:prism="http://prismlibrary.com/"
              xmlns:local="clr-namespace:PTA.Modules.MainModule.Views"
              mc:Ignorable="d" 
+             prism:ViewModelLocator.AutoWireViewModel="True"
              d:DesignHeight="450" d:DesignWidth="800"
-             Background="DarkKhaki">
+             Background="White">
+    
     <Grid>
-            
+        <ui:CommandBar DefaultLabelPosition="Right" Margin="35,10" HorizontalAlignment="Right" Panel.ZIndex="1">
+            <ui:AppBarButton Icon="Add" Label="New Vehicle" Command="{Binding AddVehicle}"/>
+            <ui:AppBarButton Icon="Edit" Label="Edit Vehicle"/>
+            <ui:AppBarButton Icon="Delete" Label="Delete Vehicle" Command="{Binding DeleteVehicle}" CommandParameter="{Binding SelectedVehicle}"/>
+        </ui:CommandBar>
+
+        <ui:GridView Padding="50" BorderThickness="0"
+                     IsSelectionEnabled="True"
+                     ItemsSource="{Binding Vehicles}"
+                     SelectedItem="{Binding SelectedVehicle}">
+
+            <ui:GridView.ItemContainerStyle>
+                <Style TargetType="ui:GridViewItem">
+                    <Setter Property="Margin" Value="15"/>
+                    <Setter Property="HorizontalAlignment" Value="Center"/>
+                    <Setter Property="Effect">
+                        <Setter.Value>
+                            <DropShadowEffect Color="Silver" Direction="0" ShadowDepth="0" Opacity="0.3" BlurRadius="8"/>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </ui:GridView.ItemContainerStyle>
+
+            <ui:GridView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Background="LightBlue">
+                        <TextBlock Text="{Binding Manufacturer}"/>
+                        <TextBlock Text="{Binding Model}"/>
+                        <TextBlock Text="{Binding Mileage}"/>
+                        <TextBlock Text="{Binding IsRented}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ui:GridView.ItemTemplate>
+        </ui:GridView>
     </Grid>
 </UserControl>
