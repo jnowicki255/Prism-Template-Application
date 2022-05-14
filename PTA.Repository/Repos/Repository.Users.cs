@@ -6,6 +6,7 @@ using PTA.Repository.Entities;
 using PTA.Repository.Requests;
 using PTA.Types.Extensions;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace PTA.Repository.Repos
@@ -50,14 +51,48 @@ namespace PTA.Repository.Repos
             return mapper.Map<User>(dbUser);
         }
 
-        public Task<User[]> SearchUsersAsync(SearchUserRequest request)
+        public async Task<User[]> SearchUsersAsync(SearchUserRequest request)
         {
-            throw new System.NotImplementedException();
+            var dbUsersQuery = dbContext.Users
+                .AsNoTracking();
+
+            if (request.IsEnabled != null)
+            {
+                dbUsersQuery = dbUsersQuery
+                    .Where(x => x.IsEnabled == request.IsEnabled);
+            }
+
+            if (request.IsExpired != null)
+            {
+                if (request.IsExpired.Value)
+                {
+                    dbUsersQuery = dbUsersQuery
+                        .Where(x => x.ExpirationDate < DateTime.UtcNow);
+                }
+                else
+                {
+                    dbUsersQuery = dbUsersQuery
+                        .Where(x => x.ExpirationDate >= DateTime.UtcNow);
+                }
+                
+            }
+
+            var dbUsers = await dbUsersQuery.ToArrayAsync();
+            return mapper.Map<User[]>(dbUsers);
         }
 
-        public Task<BaseOperationResult> UpdateUserAsync(UpdatedUser user)
+        public async Task<BaseOperationResult> UpdateUserAsync(UpdatedUser user)
         {
-            throw new System.NotImplementedException();
+            var dbUser = await dbContext.Users
+                .SingleOrDefaultAsync(x => x.UserId == user.UserId);
+
+            if (dbUser == null)
+                return new BaseOperationResult(Resources.ItemNotFound);
+
+            dbContext.Entry(dbUser).CurrentValues.SetValues(user);
+            dbUser.ModifyDate = DateTime.UtcNow;
+            await dbContext.SaveChangesAsync();
+            return BaseOperationResult.SuccessfulOperation;
         }
 
         public async Task<bool> UserExistAsync(int userId)
