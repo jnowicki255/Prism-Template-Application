@@ -43,15 +43,19 @@ namespace PTA.Repository.Repos
             return BaseOperationResult.SuccessfulOperation;
         }
 
-        public async Task<User> GetUserAsync(int userId)
+        public async Task<OperationResult<User>> GetUserAsync(int userId)
         {
             var dbUser = await dbContext.Users
                 .AsNoTracking()
                 .SingleOrDefaultAsync(x => x.UserId == userId);
-            return mapper.Map<User>(dbUser);
+
+            if (dbUser == null)
+                return new OperationResult<User>(Resources.ItemNotFound, null);
+            
+            return new OperationResult<User>(mapper.Map<User>(dbUser));
         }
 
-        public async Task<User[]> SearchUsersAsync(SearchUserRequest request)
+        public async Task<OperationResult<User[]>> SearchUsersAsync(SearchUserRequest request)
         {
             var dbUsersQuery = dbContext.Users
                 .AsNoTracking();
@@ -72,13 +76,18 @@ namespace PTA.Repository.Repos
                 else
                 {
                     dbUsersQuery = dbUsersQuery
-                        .Where(x => x.ExpirationDate >= DateTime.UtcNow);
+                        .Where(x => x.ExpirationDate >= DateTime.UtcNow 
+                                 || x.ExpirationDate == null);
                 }
                 
             }
 
             var dbUsers = await dbUsersQuery.ToArrayAsync();
-            return mapper.Map<User[]>(dbUsers);
+
+            if (dbUsers == null || dbUsers.Length < 1)
+                return new OperationResult<User[]>(Resources.ItemNotFound, null);
+
+            return new OperationResult<User[]>(mapper.Map<User[]>(dbUsers));
         }
 
         public async Task<BaseOperationResult> UpdateUserAsync(UpdatedUser user)

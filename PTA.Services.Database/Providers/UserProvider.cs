@@ -45,14 +45,7 @@ namespace PTA.Services.Database.Providers
 
         public async Task<OperationResult<User>> GetUserAsync(int userId)
         {
-            var result = await repository.GetUserAsync(userId);
-
-            if (result != null)
-            {
-                return new OperationResult<User>(result);
-            }
-
-            return new OperationResult<User>("User not found", null);
+            return await repository.GetUserAsync(userId);
         }
 
         public async Task<OperationResult<User[]>> SearchUsersAsync(SearchUserRequest request)
@@ -61,9 +54,7 @@ namespace PTA.Services.Database.Providers
             if (!validationResult.IsValid)
                 return new OperationResult<User[]>(validationResult.Errors);
 
-            var result = await repository.SearchUsersAsync(request);
-
-            return new OperationResult<User[]>(result);
+            return await repository.SearchUsersAsync(request);
         }
 
         public async Task<BaseOperationResult> UpdateUserAsync(UpdatedUser user)

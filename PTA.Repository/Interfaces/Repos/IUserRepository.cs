@@ -15,14 +15,14 @@ namespace PTA.Repository.Interfaces.Repos
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        Task<User[]> SearchUsersAsync(SearchUserRequest request);
+        Task<OperationResult<User[]>> SearchUsersAsync(SearchUserRequest request);
 
         /// <summary>
         /// Get single robot with specified id.
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
-        Task<User> GetUserAsync(int userId);
+        Task<OperationResult<User>> GetUserAsync(int userId);
 
         /// <summary>
         /// Create new user.
