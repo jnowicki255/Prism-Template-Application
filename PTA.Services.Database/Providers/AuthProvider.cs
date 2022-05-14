@@ -9,13 +9,9 @@ namespace PTA.Services.Database.Providers
 {
     public class AuthProvider : BaseProvider, IAuthProvider
     {
-        private readonly IRepository repository;
-
         public AuthProvider(IRepository repository, IValidationProvider validationProvider)
-            : base(validationProvider)
-        {
-            this.repository = repository;
-        }
+            : base(repository, validationProvider)
+        { }
 
         public async Task<OperationResult<User>> AuthorizeCredentialsAsync(string username, string secret)
         {

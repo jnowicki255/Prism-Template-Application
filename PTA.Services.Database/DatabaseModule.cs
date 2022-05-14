@@ -32,10 +32,12 @@ namespace PTA.Services.Database
             containerRegistry.Register<IRepository, Repository.Repos.Repository>();
             containerRegistry.Register<IAuthRepository, Repository.Repos.Repository>();
             containerRegistry.Register<IUserRepository, Repository.Repos.Repository>();
+            containerRegistry.Register<IVehiclesRepository, Repository.Repos.Repository>();
 
             containerRegistry.Register<IValidationProvider, ValidationProvider>();
             containerRegistry.Register<IAuthProvider, AuthProvider>();
             containerRegistry.Register<IUserProvider, UserProvider>();
+            containerRegistry.Register<IVehicleProvider, VehicleProvider>();
         }
     }
 }

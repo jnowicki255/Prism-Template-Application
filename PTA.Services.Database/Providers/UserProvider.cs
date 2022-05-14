@@ -11,14 +11,9 @@ namespace PTA.Services.Database.Providers
 {
     public class UserProvider : BaseProvider, IUserProvider
     {
-        private readonly IRepository repository;
-
-
         public UserProvider(IRepository repository, IValidationProvider validationProvider)
-            : base(validationProvider)
-        {
-            this.repository = repository;
-        }
+            : base(repository, validationProvider)
+        { }
 
 
         public async Task<OperationResult<User>> CreateUserAsync(NewUser newUser)

@@ -23,16 +23,16 @@ namespace PTA.Repository.Repos
             return new OperationResult<Vehicle>(savedVehicle);
         }
 
-        public async Task<Vehicle> GetVehicleAsync(int vehicleId)
+        public async Task<OperationResult<Vehicle>> GetVehicleAsync(int vehicleId)
         {
             var dbVehicle = await dbContext.Vehicles.SingleOrDefaultAsync(x => x.VehicleId == vehicleId);
-            return mapper.Map<Vehicle>(dbVehicle);
+            return new OperationResult<Vehicle>(mapper.Map<Vehicle>(dbVehicle));
         }
 
-        public async Task<IEnumerable<Vehicle>> GetVehiclesAsync()
+        public async Task<OperationResult<IEnumerable<Vehicle>>> GetVehiclesAsync()
         {
             var dbVehicles = await dbContext.Vehicles.ToArrayAsync();
-            return mapper.Map<Vehicle[]>(dbVehicles);
+            return new OperationResult<IEnumerable<Vehicle>>(mapper.Map<Vehicle[]>(dbVehicles));
         }
 
         public async Task<BaseOperationResult> RemoveVehicleAsync(int vehicleId)
@@ -69,12 +69,12 @@ namespace PTA.Repository.Repos
             throw new System.NotImplementedException();
         }
 
-        public Task<VehicleType> GetVehicleTypeAsync(int vehicleTypeId)
+        public Task<OperationResult<VehicleType>> GetVehicleTypeAsync(int vehicleTypeId)
         {
             throw new System.NotImplementedException();
         }
 
-        public Task<IEnumerable<VehicleType>> GetVehicleTypesAsync()
+        public Task<OperationResult<IEnumerable<VehicleType>>> GetVehicleTypesAsync()
         {
             throw new System.NotImplementedException();
         }
@@ -96,12 +96,12 @@ namespace PTA.Repository.Repos
             throw new System.NotImplementedException();
         }
 
-        public Task<FuelType> GetFuelTypeAsync(int fuelTypeId)
+        public Task<OperationResult<FuelType>> GetFuelTypeAsync(int fuelTypeId)
         {
             throw new System.NotImplementedException();
         }
 
-        public Task<IEnumerable<FuelType>> GetFuelTypesAsync()
+        public Task<OperationResult<IEnumerable<FuelType>>> GetFuelTypesAsync()
         {
             throw new System.NotImplementedException();
         }
