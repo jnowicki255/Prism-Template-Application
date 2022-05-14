@@ -25,6 +25,7 @@ namespace PTA.Modules.MainModule
         {
             containerRegistry.RegisterForNavigation<LoginView, LoginViewModel>();
             containerRegistry.RegisterForNavigation<DashboardView, DashboardViewModel>();
+            containerRegistry.RegisterForNavigation<VehiclesView, VehiclesViewModel>();
             containerRegistry.RegisterForNavigation<SettingsView, SettingsViewModel>();
         }
     }

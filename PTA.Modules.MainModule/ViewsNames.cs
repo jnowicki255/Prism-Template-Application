@@ -4,6 +4,7 @@
     {
         public const string Login = "LoginView";
         public const string Dashboard = "DashboardView";
+        public const string Vehicles = "VehiclesView";
         public const string Settings = "SettingsView";
     }
 }

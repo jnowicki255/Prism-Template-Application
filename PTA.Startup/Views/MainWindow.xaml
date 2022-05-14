@@ -46,6 +46,11 @@
                                    Content="Home" 
                                    Tag="{x:Static mainmodule:ViewsNames.Dashboard}"/>
 
+            <ui:NavigationViewItem x:Name="VehiclesItem"
+                                   Icon="AllApps"
+                                   Content="Vehicles" 
+                                   Tag="{x:Static mainmodule:ViewsNames.Vehicles}"/>
+
         </ui:NavigationView.MenuItems>
 
         <ui:NavigationView.FooterMenuItems>
