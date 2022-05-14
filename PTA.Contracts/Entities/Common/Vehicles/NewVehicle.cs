@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace PTA.Contracts.Entities.Common.Vehicles
+﻿namespace PTA.Contracts.Entities.Common.Vehicles
 {
     public class NewVehicle
     {
@@ -16,7 +10,7 @@ namespace PTA.Contracts.Entities.Common.Vehicles
         public string LicencePlatesNumber { get; set; }
         public bool IsRented { get; set; }
         public int Power { get; set; }
-        public FuelType FuelType { get; set; }
-        public VehicleType VehicleType { get; set; }
+        public int FuelTypeId { get; set; }
+        public int VehicleTypeId { get; set; }
     }
 }

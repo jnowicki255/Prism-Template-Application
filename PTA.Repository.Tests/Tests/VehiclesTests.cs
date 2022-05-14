@@ -43,7 +43,9 @@ namespace PTA.Repository.Tests.Tests
                 LicencePlatesNumber = "DW 00055",
                 Power = 650,
                 VinNumber = "AAABBBCCCDDD",
-                YearOfProduction = "2020"
+                YearOfProduction = "2020",
+                FuelTypeId = 1,
+                VehicleTypeId = 1
             };
 
             // Act

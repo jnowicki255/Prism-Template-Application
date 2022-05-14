@@ -72,14 +72,13 @@ namespace PTA.Repository
 
         private void SeedDatabase(ModelBuilder modelBuilder)
         {
-
+            modelBuilder.FuelTypeSeed();
+            modelBuilder.VehicleTypeSeed();
         }
 
         private void SeedProductionDatabase(ModelBuilder modelBuilder)
         {
             modelBuilder.UsersSeed();
-            modelBuilder.FuelTypeSeed();
-            modelBuilder.VehicleTypeSeed();
         }
     }
 }
