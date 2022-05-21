@@ -3,6 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Prism.DryIoc;
 using Prism.Ioc;
 using Prism.Modularity;
+using PTA.Modules.DialogsModule;
 using PTA.Modules.MainModule;
 using PTA.Repository.Settings;
 using PTA.Services.Database;
@@ -39,6 +40,7 @@ namespace PTA.Startup
         {
             moduleCatalog.AddModule<DatabaseModule>();
             moduleCatalog.AddModule<MainModule>();
+            moduleCatalog.AddModule<DialogsModule>();
         }
 
         private IMapper CreateMapper()

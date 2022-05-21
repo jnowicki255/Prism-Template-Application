@@ -14,7 +14,7 @@
     <Grid>
         <ui:CommandBar DefaultLabelPosition="Right" Margin="35,10" HorizontalAlignment="Right" Panel.ZIndex="1">
             <ui:AppBarButton Icon="Add" Label="New Vehicle" Command="{Binding AddVehicle}"/>
-            <ui:AppBarButton Icon="Edit" Label="Edit Vehicle"/>
+            <ui:AppBarButton Icon="Edit" Label="Edit Vehicle" Command="{Binding UpdateVehicle}" CommandParameter="{Binding SelectedVehicle}"/>
             <ui:AppBarButton Icon="Delete" Label="Delete Vehicle" Command="{Binding DeleteVehicle}" CommandParameter="{Binding SelectedVehicle}"/>
         </ui:CommandBar>
 

@@ -41,6 +41,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\PTA.Modules.DialogsModule\PTA.Modules.DialogsModule.csproj" />
     <ProjectReference Include="..\PTA.Modules.MainModule\PTA.Modules.MainModule.csproj" />
     <ProjectReference Include="..\PTA.Services.Database\PTA.Services.Database.csproj" />
   </ItemGroup>

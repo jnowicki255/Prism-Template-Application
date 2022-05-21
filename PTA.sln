@@ -29,6 +29,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PTA.Repository.Tests", "PTA
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PTA.TestBase", "PTA.TestBase\PTA.TestBase.csproj", "{4316EF6C-4580-4816-B3FD-118809388BC7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PTA.Modules.DialogsModule", "PTA.Modules.DialogsModule\PTA.Modules.DialogsModule.csproj", "{90A25149-D75F-4AA3-8956-A24DAA1A71DC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -75,6 +77,10 @@ Global
 		{4316EF6C-4580-4816-B3FD-118809388BC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4316EF6C-4580-4816-B3FD-118809388BC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4316EF6C-4580-4816-B3FD-118809388BC7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{90A25149-D75F-4AA3-8956-A24DAA1A71DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90A25149-D75F-4AA3-8956-A24DAA1A71DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90A25149-D75F-4AA3-8956-A24DAA1A71DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90A25149-D75F-4AA3-8956-A24DAA1A71DC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -84,6 +90,7 @@ Global
 		{916AE3A8-EA37-4448-B997-FCD7E190F73D} = {43D2E55C-4BCF-47BF-89E7-426580AEECCC}
 		{C6084C12-D066-4F6C-87C8-7875AA7AD70F} = {00836D64-0548-4D40-A05C-AFFBF346091C}
 		{B8B7ADE2-44F0-46AD-94A4-B813C07E4ABC} = {43D2E55C-4BCF-47BF-89E7-426580AEECCC}
+		{90A25149-D75F-4AA3-8956-A24DAA1A71DC} = {7BDC5250-E2B5-45D2-B8EC-9642143E6CCB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1C8F4752-B66B-47D7-A78F-A004370F415C}

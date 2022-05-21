@@ -1,7 +1,9 @@
 ﻿using Prism.Commands;
 using Prism.Regions;
+using Prism.Services.Dialogs;
 using PTA.Contracts.Entities.Common.Vehicles;
 using PTA.Core.Mvvm;
+using PTA.Modules.DialogsModule;
 using PTA.Services.Database.Interfaces.Providers;
 using PTA.Types;
 using System;
@@ -14,6 +16,7 @@ namespace PTA.Modules.MainModule.ViewModels
     {
         #region Private properties
         private readonly IVehicleProvider vehicleProvider;
+        private readonly IDialogService dialogService;
         #endregion
 
         #region Public properties
@@ -28,10 +31,11 @@ namespace PTA.Modules.MainModule.ViewModels
         #endregion
 
         #region Constructor
-        public VehiclesViewModel(IRegionManager regionManager, IVehicleProvider vehicleProvider)
+        public VehiclesViewModel(IRegionManager regionManager, IVehicleProvider vehicleProvider, IDialogService dialogService)
             : base(regionManager)
         {
             this.vehicleProvider = vehicleProvider;
+            this.dialogService = dialogService;
 
             InitialieCommnads();
         }
@@ -39,7 +43,8 @@ namespace PTA.Modules.MainModule.ViewModels
         private void InitialieCommnads()
         {
             AddVehicle = new DelegateCommand(AddVehicleExecute);
-            UpdateVehicle = new DelegateCommand<Vehicle>(UpdateVehicleExecute);
+            UpdateVehicle = new DelegateCommand<Vehicle>(UpdateVehicleExecute, UpdateVehicleCanExecute)
+                .ObservesProperty(() => SelectedVehicle);
             DeleteVehicle = new DelegateCommand<Vehicle>(DeleteVehicleExecute, DeleteVehicleCanExecute)
                 .ObservesProperty(() => SelectedVehicle);
         }
@@ -48,33 +53,28 @@ namespace PTA.Modules.MainModule.ViewModels
         #region Command methods
         private void AddVehicleExecute()
         {
-            var newVehicle = new NewVehicle
+            var param = new DialogParameters
             {
-                Manufacturer = "Audi",
-                Model = "A6",
-                FuelTypeId = 1,
-                IsRented = false,
-                LicencePlatesNumber = "DW111111",
-                VinNumber = "AAABBBCCC",
-                Mileage = 12000,
-                Power = 250,
-                VehicleTypeId = 1,
-                YearOfProduction = "2018"
+                { nameof(DialogType), DialogType.Create }
             };
 
-            Task.Run(async () =>
-            {
-                var result = await vehicleProvider.CreateVehicleAsync(newVehicle);
-                await LoadVehiclesAsync();
-            });
-            
+            dialogService.ShowDialog(DialogsNames.EditVehicle, param, CloseDialogCallback);
         }
 
+        public bool UpdateVehicleCanExecute(Vehicle vehicle)
+        {
+            return vehicle != null;
+        }
         private void UpdateVehicleExecute(Vehicle vehicle)
         {
-            throw new NotImplementedException();
-        }
+            var param = new DialogParameters
+            {
+                { nameof(DialogType), DialogType.Edit },
+                { nameof(Vehicle), vehicle }
+            };
 
+            dialogService.ShowDialog(DialogsNames.EditVehicle, param, CloseDialogCallback);
+        }
 
         private bool DeleteVehicleCanExecute(Vehicle vehicle)
         {
@@ -113,6 +113,14 @@ namespace PTA.Modules.MainModule.ViewModels
             {
                 Vehicles = new ObservableList<Vehicle>(result.Value.ToArray());
                 RaisePropertyChanged(nameof(Vehicles));
+            }
+        }
+
+        private void CloseDialogCallback(IDialogResult obj)
+        {
+            if (obj.Result == ButtonResult.OK)
+            {
+                Task.Run(async () => await LoadVehiclesAsync());
             }
         }
         #endregion
